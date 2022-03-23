@@ -5,6 +5,7 @@ from tensorflow.keras import Model
 import tensorflow.keras as keras
 import numpy as np
 from tqdm import tqdm
+import time
 
 
 class MLP(Model):
@@ -28,9 +29,12 @@ if __name__ == '__main__':
     
     model = MLP(1024, 512)
 
-    x_in = np.random.rand(2, 1024)
+    x_in = np.random.rand(32, 1024)
 
-    for i in tqdm(range(100)):
+    num_steps = 10000
+    start = time.time()
+    for i in tqdm(range(num_steps)):
         x = model(x_in)
         pass
+    print(f'{num_steps} cost {time.time()-start} seconds')
     pass
