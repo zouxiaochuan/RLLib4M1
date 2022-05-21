@@ -5,6 +5,8 @@ import numpy as np
 import time
 
 
+device = 'mps'
+
 if __name__ == '__main__':
     model = models.resnet50(pretrained=True)
     model.eval()
@@ -14,8 +16,12 @@ if __name__ == '__main__':
     
     num_steps = 50
     start = time.time()
+    model.to(device)
+
     for i in tqdm(range(num_steps)):
-        result = model(torch.from_numpy(x)).detach().numpy()
+        x_ = torch.from_numpy(x)
+        x_ = x_.to(device)
+        result = model(x_).cpu().detach().numpy()
         pass
     
     print(f'{num_steps} cost {time.time()-start} seconds')
