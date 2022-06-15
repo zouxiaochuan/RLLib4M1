@@ -3,7 +3,7 @@ from tqdm import tqdm
 import torchvision.models as models
 import numpy as np
 import time
-import os
+import platform
 
 
 class MLP(torch.nn.Module):
@@ -46,7 +46,7 @@ def run(device):
     pass
 
 if __name__ == '__main__':
-    if os.system().startswith('Darwin'):
+    if platform.system().startswith('Darwin'):
         devices = ['cpu', 'mps']
     else:
         devices = ['cpu', 'cuda']

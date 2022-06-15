@@ -3,7 +3,7 @@ from tqdm import tqdm
 import torchvision.models as models
 import numpy as np
 import time
-import os
+import platform
 
 
 device = 'mps'
@@ -28,7 +28,7 @@ def run(device):
     print(f'{device} {num_steps} cost {time.time()-start} seconds')
 
 if __name__ == '__main__':
-    if os.system().startswith('Darwin'):
+    if platform.system().startswith('Darwin'):
         devices = ['cpu', 'mps']
     else:
         devices = ['cpu', 'cuda']
