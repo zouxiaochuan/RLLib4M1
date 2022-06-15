@@ -26,27 +26,31 @@ class MLP(torch.nn.Module):
     pass
 
 
-device='mps'
-
-if __name__ == '__main__':
+def run(device):
     model = MLP(1024, 512)
     # model = models.resnet50(pretrained=True)
     model.eval()
-
-    # input_shape = [1, 3, 224, 224]
-    input_shape = [-1, 1024]
-    # x = np.random.rand(1, 3, 224, 224).astype('float32')
     x = np.random.rand(32, 1024).astype('float32')
-    
+    # x = torch.from_numpy(x).to(device)
 
     num_steps = 10000
     start = time.time()
     model.to(device)
     for i in tqdm(range(num_steps)):
-        x_ = torch.from_numpy(x)
-        x_ = x_.to(device)
-        result = model(x_).cpu().detach().numpy()
+        x_ = torch.from_numpy(x).to(device)
+        result = model(x_).cpu()
         pass
 
-    print(f'{num_steps} cost {time.time()-start} seconds')
+    print(f'{device} {num_steps} cost {time.time()-start} seconds')
+    pass
+
+if __name__ == '__main__':
+    if os.system().startswith('Darwin'):
+        devices = ['cpu', 'mps']
+    else:
+        devices = ['cpu', 'cuda']
+        pass
+    for device in devices:
+        run(device)
+        pass
     pass

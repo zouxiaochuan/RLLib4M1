@@ -7,8 +7,8 @@ import time
 
 device = 'mps'
 
-if __name__ == '__main__':
-    model = models.resnet50(pretrained=True)
+def run(device):
+    model = models.resnet50(weights=models.ResNet50_Weights.IMAGENET1K_V1)
     model.eval()
 
     input_shape = [-1, 3, 224, 224]
@@ -21,8 +21,18 @@ if __name__ == '__main__':
     for i in tqdm(range(num_steps)):
         x_ = torch.from_numpy(x)
         x_ = x_.to(device)
-        result = model(x_).cpu().detach().numpy()
+        result = model(x_).cpu()
         pass
     
-    print(f'{num_steps} cost {time.time()-start} seconds')
+    print(f'{device} {num_steps} cost {time.time()-start} seconds')
+
+if __name__ == '__main__':
+    if os.system().startswith('Darwin'):
+        devices = ['cpu', 'mps']
+    else:
+        devices = ['cpu', 'cuda']
+        pass
+    for device in devices:
+        run(device)
+        pass
     pass
