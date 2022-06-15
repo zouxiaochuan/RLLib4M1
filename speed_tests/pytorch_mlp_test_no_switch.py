@@ -3,6 +3,7 @@ from tqdm import tqdm
 import torchvision.models as models
 import numpy as np
 import time
+import os
 
 
 class MLP(torch.nn.Module):
