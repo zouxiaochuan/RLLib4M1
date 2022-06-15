@@ -13,6 +13,8 @@ class MLP(torch.nn.Module):
         self.tanh0 = torch.nn.Tanh()
         self.fc1 = torch.nn.Linear(hidden_size, hidden_size)
         self.tanh1 = torch.nn.Tanh()
+        self.fc2 = torch.nn.Linear(hidden_size, hidden_size)
+        self.tanh2 = torch.nn.Tanh()
         # self.output0 = torch.nn.Sigmoid()#(hidden_size, 1)
         self.output0 = torch.nn.Linear(hidden_size, hidden_size)
 
@@ -21,6 +23,8 @@ class MLP(torch.nn.Module):
         x = self.tanh0(x)
         x = self.fc1(x)
         x = self.tanh1(x)
+        x = self.fc2(x)
+        x = self.tanh2(x)
         x = self.output0(x)
         return x
 
@@ -31,7 +35,7 @@ def run(device):
     model = MLP(1024, 512)
     # model = models.resnet50(pretrained=True)
     model.eval()
-    x = np.random.rand(32, 1024).astype('float32')
+    x = np.random.rand(128, 1024).astype('float32')
     x = torch.from_numpy(x).to(device)
 
     num_steps = 10000
