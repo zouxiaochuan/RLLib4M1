@@ -25,7 +25,7 @@ def run(device):
     model = LSTM(INPUT_SIZE, HIDDEN_SIZE)
     # model = models.resnet50(pretrained=True)
     model.eval()
-    x = np.random.rand(128, 1024).astype('float32')
+    x = np.random.rand(8, 128, 1024).astype('float32')
     # x = torch.from_numpy(x).to(device)
 
     num_steps = 1000

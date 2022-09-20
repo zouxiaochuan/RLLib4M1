@@ -25,7 +25,13 @@ Resnet50: run for 50 steps of batch size 32
 | RTX3090         |  GPU   |  Resnet50 |  2.9                 |  
 | M1              |  CPU   |  Resnet50 |  206                 | 
 | M1 Ultra        |  CPU   |  Resnet50 |  210                 |  
-| Xeon Gold       |  CPU   |  Resnet50 |  57                  | 
+| Xeon Gold       |  CPU   |  Resnet50 |  57                  |
+| RTX3090         |  GPU   |  LSTM     |  6.37                |  
+| M1 Ultra        |  GPU   |  LSTM     |  3.92                | 
+| M1 Ultra        |  CPU   |  LSTM     |  48.8                |  
+| Xeon Gold       |  CPU   |  LSTM     |  376                 |
+
+
 
 &nbsp;
 ## Compare of switch and no-switch
