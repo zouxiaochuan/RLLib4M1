@@ -55,13 +55,12 @@ no-switch: all operations are done on gpu
 
 &nbsp;
 ## Compare of revive sdk
-setting: venv algo: ppo, revive epoch: 50, ppo epoch: 20
+setting: venv algo: ppo, revive epoch: 20, ppo epoch: 20, sdk verion: 0.8, rollout horizon: 10
 
 | chips              | model        | time cost(seconds)   |   
 | :-----------:      | :-----       | :---------:          |
-| M1 Ultra(only cpu) |  revive      |  54                  |
-| M1 Ultra(gpu)      |  revive      |  597                 |
-| M1 (only cpu)      |  revive      |  65                  |
-| RTX3090            |  revive      |  119                 |
-| Xeon Gold          |  revive      |  200                 |
+| M1 Ultra(only cpu) |  revive      |  283.2                 |
+| M1 Ultra(gpu)      |  revive      |  672.3                 |
+| RTX3090            |  revive      |  294.3                 |
+| Xeon Gold          |  revive      |  1355.5                |
 
